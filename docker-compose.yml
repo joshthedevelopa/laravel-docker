@@ -1,0 +1,54 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '3.9'
+
+services:
+  admin:
+    image: rose
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '4000:8000'
+
+
+# services:
+#   mariadb:
+#     image: docker.io/bitnami/mariadb:11.1
+#     environment:
+#       # ALLOW_EMPTY_PASSWORD is recommended only for development.
+#       - ALLOW_EMPTY_PASSWORD=yes
+#       - MARIADB_USER=mariadb
+#       - MARIADB_DATABASE=multi_food_db
+#   admin_panel:
+#     image: docker.io/bitnami/laravel:8.6.11
+#     ports:
+#       - '8000:8000'
+#     environment:
+#       - DB_HOST=mariadb
+#       - DB_PORT=3306
+#       - DB_USERNAME=root
+#       - DB_DATABASE=multi_food_db
+#     volumes:
+#       - './:/app'
+#     depends_on:
+#       - mariadb
+#     build: 
+#       context: ./
+    # develop:
+    #     watch:
+    #       - action: sync
+    #         path: ./
+    #         target: /app
+    #         ignore:
+    #           - node_modules/
+    #           - vendor/
+    #       - action: rebuild
+    #         path: package.json
+    #       - action: rebuild
+    #         path: composer.json
+
+  
